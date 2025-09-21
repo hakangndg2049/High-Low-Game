@@ -1,0 +1,64 @@
+import random
+data = [
+    {"name": "instagram", "follower": 346, "description": "social media platform", "country": "United States"},
+    {"name": "ronaldo", "follower": 215, "description": "Footballer", "country": "Portugal"},
+    {"name": "dwayne johnson", "follower": 181, "description": "Actor", "country": "United States"},
+    {"name": "billie eilish", "follower": 183, "description": "Singer", "country": "United States"},
+    {"name": "youtube", "follower": 299, "description": "Video platform", "country": "United States"},
+    {"name": "selenagomez", "follower": 245, "description": "Singer/Actress", "country": "United States"},
+    {"name": "kyliejenner", "follower": 220, "description": "Entrepreneur/Influencer", "country": "United States"},
+    {"name": "nike", "follower": 150, "description": "Sports brand", "country": "United States"},
+    {"name": "tiktok", "follower": 180, "description": "Video sharing platform", "country": "United States"},
+    {"name": "lionel messi", "follower": 210, "description": "Footballer", "country": "Argentina"},
+    {"name": "elon musk", "follower": 120, "description": "Entrepreneur/CEO", "country": "United States"},
+    {"name": "ariana grande", "follower": 200, "description": "Singer", "country": "United States"},
+    {"name": "starbucks", "follower": 110, "description": "Coffee brand", "country": "United States"},
+    {"name": "oprah winfrey", "follower": 95, "description": "TV host", "country": "United States"},
+    {"name": "cristiano ronaldo jr", "follower": 80, "description": "Young influencer", "country": "Portugal"},
+    {"name": "twitter", "follower": 140, "description": "Social media platform", "country": "United States"},
+]
+
+# print(data[0])
+# print(data[0]["name"])
+
+length = len(data)
+
+choices = []
+for i in range(0,length):
+    choices.append(i)
+
+gameOver = False
+streak = 0
+
+while gameOver == False:
+    randomNum = random.choice(choices)
+    competent1 = data[randomNum]
+    choices.remove(randomNum)
+
+    randomNum2 = random.choice(choices)
+    competent2 = data[randomNum2]
+    choices.append(randomNum)
+
+    print(f'{competent1["name"]} - {competent1["description"]} - {competent1["country"]}')
+    print(f'{competent2["name"]} - {competent2["description"]} - {competent2["country"]}')
+
+    valid = False
+    while valid == False:
+        pick = input("which one do you choose? enter 'f' for first and 's' for second").lower()
+        if pick == "f" or pick == "s":
+            valid = True
+        else:
+            print("enter 'f' or 's' and not something else")
+
+    if pick == "f" and competent1["follower"] > competent2["follower"]:
+        print("true guess !")
+        streak += 1
+    elif pick == "s" and competent2["follower"] > competent1["follower"]:
+        print("true guess !")
+        streak += 1
+    else:
+        print("you lose")
+        gameOver = True
+        print(f"streak: {streak}")
+    print(" ")
+
